@@ -1,1 +1,1 @@
-# Basic Arduino codes for tutorials in ENGR 1624
+# Arduino codes to support Arduino Fundamentals lab
