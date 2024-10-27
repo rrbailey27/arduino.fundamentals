@@ -9,32 +9,50 @@ void setup()
 
 void loop()
 {
+
   if (CheckButton()==true) //calls the CheckButton function
-  {     
-    Serial.println(press); // this prints the value of "press";  more on Seriallater
+  
+   {     
     press++; //this is a shorthand way of writing Press=press+1 - increments the counter by 1
+    Serial.println(press); // this prints the count more on Serial later
+
   } 
+
+// you can comment out the above if loop and uncomment the following one
+// to see what happens if you just count up without event-driven programming
+
+/*
+  if (digitalRead(buttonPin) == 0)
+  {
+    press++; //this is a shorthand way of writing Press=press+1 - increments the counter by 1
+    Serial.println(press); // this prints the count more on Serial later
+
+  }
+  */
   
 }
+
 
 bool CheckButton(void)
 {
   bool retVal = false;
-  static int prevReading = 0; // 0 means "LOW" 1 neans "HIGH" for digitalRead in Arduino
+  static int prevReading = 1; // 0 means "LOW" or 0V,  1 neans "HIGH" or 5V for digitalRead in Arduino
+  // with a pull-up resistor, 1 means 'not pressed" and 0 means the button is "pressed"
 
   bool currReading = digitalRead(buttonPin);
 
   if(you write this statement!)
   {
     delay(200); 
-    /* dleay is added to help handle button "debouncing"
+    /* delay is added to help handle button "debouncing"
     the button mounted on a breadboard is not a very precise
-    swtich... so thie helps average out 
+    switch... so this helps average out 
     some of those issues
     */
-    retVal = true;
+    retVal = true; // this sets the value that the function will return to "true" - because the button has been pressed!
   }
 
-  prevReading = currReading;
-  return retVal;
+  prevReading = currReading;  // sets the vale of "prevReading" to the current reading value for the next pass through this loop
+
+  return retVal; // returns the value of retVal
 }
